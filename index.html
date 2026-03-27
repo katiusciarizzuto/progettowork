@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Matrice del rischio cantiere</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" ></script>
+  
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <h1 class="text-center mb-2">Impresa edile: "REALIZZIAMO I TUOI SOGNI!!"</h1>
+  <h2 class="text-center mb-3">Calcolo dei potenziali rischi nel cantiere</H2>
+
+  <!--INSERISCO LA TABELLA DELLE PROBABILITA'-->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-3; mb-4;">
+        <h5>Livelli di PROBABILITA'</h5>
+        <table class="table table-bordered">
+          <tr class="verde">
+            <td class="valore">1</td>
+            <td class="livello">Improbabile</td>
+            <td class="criteri">Il verificarsi del danno è creduto impossibile dagli addetti; Non è mai accaduto nulla di simile.</td>
+          </tr>
+          <tr class="giallo">
+            <td class="valore">2</td>
+            <td class="livello">Poco probabile</td>
+            <td class="criteri">Il verificarsi del danno dipende da condizioni sfortunate.Eventi simili si sono verificati molto raramente</td>
+          </tr>
+          <tr class="arancione">
+            <td class="valore">3</td>
+            <td class="livello">Probabile</td>
+            <td class="criteri">Il verificarsi del danno dipende da condizioni non direttamente connesse alla situazione ma possibili. Eventi simili sono già stati riscontrati in passato</td>
+            </tr>
+          <tr class="rosso">
+            <td class="valore">4</td>
+            <td class="livello">Molto probabile</td>
+            <td class="criteri">Il verificarsi del danno dipende da condizioni direttamente connesse alla situazione. Eventi simili sono già accaduti in azienda o in aziende dello stesso tipo.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+<!--INSERISCO LA TABELLA DEL DANNO-->
+    <div class="col-md-6">
+      <div class="card p-3; mb-4">
+        <h5>Livelli di DANNO</h5>
+        <table class="table table-bordered">
+          <tr class="verde">
+            <td class="valore">1</td>
+            <td class="livello">Lieve</td>
+            <td class="criteri">Incidente che dà luogo a disturbi rapidamente reversibili (pochi giorni).Esposizione cronica che dà luogo a disturbi rapidamente reversibili (pochi giorni).</td>
+          </tr>
+          <tr class="giallo">
+            <td class="valore">2</td>
+            <td class="livello">Medio</td>
+            <td class="criteri">Incidente che dà luogo a disturbi reversibili (mesi).	Esposizione cronica che dà luogo a disturbi reversibili (mesi).</td>
+          </tr>
+          <tr class="arancione">
+            <td class="valore">3</td>
+            <td class="livello">Grave</td>
+            <td class="criteri">Incidente con effetti di invalidità permanente parziale o comunque irreversibili.Esposizione cronica con effetti di invalidità permanente parziale o comunque irreversibili.</td>
+            </tr>
+            <tr class="rosso">
+            <td class="valore">4</td>
+            <td class="livello">Gravissimo</td>
+            <td class="criteri">Incidente con effetti di invalidità totale o mortale.	Esposizione cronica con effetti mortali o totalmente invalidanti.</td>
+          <tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSERISCO LA FORM PER INSERIMENTO DATI -->
+  <div class="card p-3 mb-4">
+
+    <h4>CALCOLO DEL RISCHIO</h4>
+
+    <select id="tipo rischio" class="form-control mb-2">
+      <option value="">Seleziona il tipo di rischio</option>
+      <option value="caduta">Caduta dall'alto quali ponteggi o altro</option>
+      <option value="carichi">Movimentazione carichi pesanti quali sollevamento sacchi di cemento, di sabbia ecc... </option>
+      <option value="elettrico">Rischio elettrico</option>
+      <option value="rumore">Rumore</option>
+    </select>
+
+    <select id="probabilita" class="form-control mb-2">
+      <option value="">Seleziona la probabilità</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <select id="danno" class="form-control mb-2">
+      <option value="">Seleziona il danno</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <button class="btn btn-primary mt-2" onclick="calcola()">Calcola il rischio</button>
+  </div>
+<div id="risultato" class="card p-3 mb-4 text-center"></div>
+
+  <!-- RISULTATO -->
+  <div id="risultato" class="card p-3 mb-4 text-center"></div>
+
+<h4 class="text-center">MATRICE DEL RISCHIO</h4>
+
+<!--INSERISCO LA MATRICE DEL RISCHIO-->
+    <table class="matrice-rischio">
+    
+  <!--INTESTAZIONE PROBABILITA-->
+
+  <tr>
+    <td class="vuoto"></td>
+    <td class="vuoto"></td>
+    <th class="titolo" colspan="4">PROBABILITA'</th>
+    
+  </tr>
+  <!--INTESTAZIONE VALORI DELLA POBABILITA-->
+  <tr>
+    <td class="vuoto"></td>
+    <td class="vuoto"></td>
+    <th class="indice">1</th>
+    <th class="indice">2</th>
+    <th class="indice">3</th>
+    <th class="indice">4</th>
+  </tr>
+
+  <!--INTESTAZIONE COLONNA DANNO-->
+  <tr>
+    <th class="titolo" rowspan="4">DANNO</th>
+
+  <!--RIGA 1-->
+    <th class="indice">1</th>
+    <td id="p1d1" class="verde">1</td>
+    <td id="p1d2" class="verde">2</td>
+    <td id="p1d3" class="giallo">3</td>
+    <td id="p1d4" class="giallo">4</td>
+  </tr>
+
+<!--RIGA 2-->
+  <tr>
+    <th class="indice">2</th>
+    <td id="p2d1" class="verde">2</td>
+    <td id="p2d2" class="giallo">4</td>
+    <td id="p2d3" class="arancione">6</td>
+    <td id="p2d4" class="arancione">8</td>
+  </tr>
+
+<!--RIGA 3-->
+  <tr>
+    <th class="indice">3</th>
+    <td id="p3d1" class="giallo">3</td>
+    <td id="p3d2" class="giallo">6</td>
+    <td id="p3d3" class="arancione">9</td>
+    <td id="p3d4" class="rosso">12</td>
+  </tr>
+
+  <!--RIGA 4-->
+  <tr>
+    <th class="indice">4</th>
+    <td id="p4d1" class="giallo">4</td>
+    <td id="p4d2" class="rosso">8</td>
+    <td id="p4d3" class="rosso">12</td>
+    <td id="p4d4" class="rosso">16</td>
+  </tr>
+</table>
+    </body>
+
+<!--INSERISCO UN FLEX PER ALLINEARE I PULSANTI-->
+<div class="d-flex justify-content-center gap-5 mt-4">
+
+  <!--INSERISCO IL BOTTONE PER SCARICARE IL DOCUMENTO PRIVACY-->
+<a href="https://1drv.ms/b/c/68ed88a88b1dc260/IQA0vRnDLWYyRo6Bwo-f-nOfAcXFp5c3k3PX8ajSotLCaZQ?e=9UEaVu" class="btn btn-outline-success">Informativa Privacy</a>
+
+
+  <!-- INSERISCO BOTTONE E COLLEGAMENTO PER DOCUMENTO PDF -->
+      <a href="https://1drv.ms/b/c/68ed88a88b1dc260/IQCW15H7LK0RRq6wtskc9RusAS3B_N_OY9VxA8kpcM_c6ns?e=0GVYpw" class="btn btn-outline-primary">Scarica documento</a>
+
+<!--GESTISCO QR TRAMITE UN BOTTONE-->
+   <div id="qrcode"></div>
+<button class="btn btn-dark"onclick="creaQR()">Crea QR code</button>
+<div id="qr"></div>
+</div>
+
+</body>
+</html>
