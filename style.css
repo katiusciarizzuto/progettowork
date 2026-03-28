@@ -108,4 +108,20 @@ table.matrice-rischio {
   border: 3px solid black !important;
   font-weight: bolder;
 }
-  
+
+.immagine-iniziale {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+h4 {
+  text-align: center;
+  font-weight: 700;
+  color: #077929;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}

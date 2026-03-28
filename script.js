@@ -1,14 +1,22 @@
   //INSERISCO LA FUNZIONE PER CALCOLO E RISULTATI
 function calcola() 
 {
+  
+document.getElementById("risultato").style.display = "block";
 
   let p = document.getElementById("probabilita").value;
   let d = document.getElementById("danno").value;
   let rischio = document.getElementById("tipo rischio").value;
 
-  if (p == "" || d == "" || rischio == "") {
+    //avvertimento se non viene selezionato un dato//
+    if (p == "" || d == "" || rischio == "") {
     alert("Occorre selezionare tutte le scelte");
     return;
+  }
+
+let immagine = document.getElementById("immagine-iniziale");
+  if (immagine) {
+  immagine.style.display = "none";
   }
 
   let r = p * d;
@@ -16,6 +24,7 @@ function calcola()
   let azioneGenerale = "";
   let classe = "";
   let specifica = "";
+  
 
     // azioni generali
   if (r <=2) {
@@ -39,7 +48,6 @@ function calcola()
     classe = "gravissimo";
   } 
   
-
   // azioni specifiche
   if (rischio == "caduta") {
         specifica = "Usare imbracature, parapetti, controllare i ponteggi. ";
@@ -62,6 +70,7 @@ function calcola()
 
   box.innerHTML =
     `<b>INDICE DI RISCHIO= ${r}<br><b>Livello:</b> ${livello}<br><b>Azione generale:</b> ${azioneGenerale}<br><b>Azione specifica:</b> ${specifica}`;
+  
 
 // tolgo evidenziazione precedente 
 document.querySelectorAll("td").forEach(c => c.classList.remove("attivo"));
@@ -73,16 +82,50 @@ let cella = document.getElementById(idCella);
 if (cella) {
   cella.classList.add("attivo");
   }
+
+
+  // mostro il pulsante reset solo dopo il calcolo
+  let btnReset = document.getElementById("btn-reset");
+  if (btnReset) {
+    btnReset.style.display = "block";
+  }
 }
+//resetto le selezioni
+
+  function resetCalcolo() {
+
+  document.getElementById("risultato").style.display = "none";
+  
+  document.getElementById("probabilita").value = "";
+  document.getElementById("danno").value = "";
+  document.getElementById("tipo rischio").value = "";
+
+  // elimino il risultato
+  let box = document.getElementById("risultato");
+  box.innerHTML = "";
+  box.className = "card p-3 mb-4 text-center";
+
+  // mostro di nuovo l'immagine
+  let immagine = document.getElementById("immagine-iniziale");
+  if (immagine) {
+    immagine.style.display = "block";
+  }
+
+  // tolgo evidenziazione matrice
+  document.querySelectorAll("td").forEach(c => {
+    c.classList.remove("attivo");
+  });
+
+  // nascondo di nuovo il bottone reset
+  let btnReset = document.getElementById("btn-reset");
+  if (btnReset) {
+    btnReset.style.display = "none";
+  }
+}
+
 
 // PDF
 function stampa() {
   window.print();
 }
 
-// QR
-new QRCode(document.getElementById("qrcode"), {
-    text: "https://1drv.ms/w/c/68ed88a88b1dc260/IQD1rS29veB6TIsI--CK1xRjAbyUJQ7O6lmoIqNkgfr3QKA?e=TpQyZe",
-  width: 150,
-  height: 150
-});
