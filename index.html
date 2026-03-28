@@ -106,17 +106,28 @@
       <option value="4">4</option>
     </select>
 
+<!--BOTTONE CALCOLA-->
     <button class="btn btn-primary mt-2" onclick="calcola()">Calcola il rischio</button>
   </div>
-<div id="risultato" class="card p-3 mb-4 text-center"></div>
+
+<!--BOTTONE RESETTA DOPO IL CALCOLO-->
+  <button id="btn-reset" class="btn btn-secondary mt-2 w-100" onclick="resetCalcolo()" style="display: none;">Resetta</button>
+
+<div id="immagine-iniziale">
+  <img src="https://esefcpt.it/wp-content/uploads/2020/03/sicurezza_1.jpg" class="img-fluid immagine-iniziale" alt="Immaginevisualizzo">
+</div>
+
 
   <!-- RISULTATO -->
-  <div id="risultato" class="card p-3 mb-4 text-center"></div>
-
-<h4 class="text-center">MATRICE DEL RISCHIO</h4>
+  <div id="risultato" class="card p-3 mb-4 text-center" style="display:none"></div>
 
 <!--INSERISCO LA MATRICE DEL RISCHIO-->
-    <table class="matrice-rischio">
+
+<h4 class="text-center">MATRICE DEL RISCHIO</h4>
+<div class="table-responsive">
+  <table class="matrice-rischio">
+
+
     
   <!--INTESTAZIONE PROBABILITA-->
 
@@ -178,7 +189,7 @@
     </body>
 
 <!--INSERISCO UN FLEX PER ALLINEARE I PULSANTI-->
-<div class="d-flex justify-content-center gap-5 mt-4">
+<div class="d-flex flex-column flex-md-row justify-content-center gap-3 mt-4 text-center">
 
   <!--INSERISCO IL BOTTONE PER SCARICARE IL DOCUMENTO PRIVACY-->
 <a href="https://1drv.ms/b/c/68ed88a88b1dc260/IQA0vRnDLWYyRo6Bwo-f-nOfAcXFp5c3k3PX8ajSotLCaZQ?e=9UEaVu" class="btn btn-outline-success">Informativa Privacy</a>
