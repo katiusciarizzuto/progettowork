@@ -105,9 +105,9 @@ table.matrice-rischio {
 .attivo {
   background-color: black !important;
   color: white !important;
-  border: 3px solid black !important;
+  
   font-weight: bolder;
-}
+  }
 
 .immagine-iniziale {
   max-width: 500px;

@@ -8,13 +8,14 @@ document.getElementById("risultato").style.display = "block";
   let d = document.getElementById("danno").value;
   let rischio = document.getElementById("tipo rischio").value;
 
-    //avvertimento se non viene selezionato un dato//
+ //avvertimento se non viene selezionato un dato//
     if (p == "" || d == "" || rischio == "") {
-    alert("Occorre selezionare tutte le scelte");
-    return;
+      alert("Occorre selezionare tutte le opzioni");
+      return;
   }
 
-let immagine = document.getElementById("immagine-iniziale");
+  
+  let immagine = document.getElementById("immagine-iniziale");
   if (immagine) {
   immagine.style.display = "none";
   }
@@ -62,7 +63,7 @@ let immagine = document.getElementById("immagine-iniziale");
   }
 
   if (rischio == "rumore") {
-    specifica = "Usare cuffie protettive.";
+    specifica = "Usare cuffie protettive, limitare la durata dell'esposizione.";
   }
 
   let box = document.getElementById("risultato");
@@ -75,22 +76,20 @@ let immagine = document.getElementById("immagine-iniziale");
 // tolgo evidenziazione precedente 
 document.querySelectorAll("td").forEach(c => c.classList.remove("attivo"));
 
-let idCella = "p" + p + "d" + d;
-let cella = document.getElementById(idCella);
 
 // seleziono la cella del risultato
-if (cella) {
-  cella.classList.add("attivo");
-  }
+let idCella = "p" + p + "d" + d;
+let cella = document.getElementById(idCella);
+cella.classList.add("attivo");
+
 
 
   // mostro il pulsante reset solo dopo il calcolo
   let btnReset = document.getElementById("btn-reset");
-  if (btnReset) {
-    btnReset.style.display = "block";
-  }
+      btnReset.style.display = "block";
+  
 }
-//resetto le selezioni
+//resetto le selezioni e i risultati
 
   function resetCalcolo() {
 
@@ -100,16 +99,15 @@ if (cella) {
   document.getElementById("danno").value = "";
   document.getElementById("tipo rischio").value = "";
 
-  // elimino il risultato
+  // elimino il contenitore
   let box = document.getElementById("risultato");
   box.innerHTML = "";
   box.className = "card p-3 mb-4 text-center";
 
   // mostro di nuovo l'immagine
   let immagine = document.getElementById("immagine-iniziale");
-  if (immagine) {
     immagine.style.display = "block";
-  }
+  
 
   // tolgo evidenziazione matrice
   document.querySelectorAll("td").forEach(c => {
@@ -118,14 +116,10 @@ if (cella) {
 
   // nascondo di nuovo il bottone reset
   let btnReset = document.getElementById("btn-reset");
-  if (btnReset) {
     btnReset.style.display = "none";
+  
   }
-}
 
 
-// PDF
-function stampa() {
-  window.print();
-}
+
 
