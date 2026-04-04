@@ -33,17 +33,17 @@ document.getElementById("risultato").style.display = "block";
     azioneGenerale= "Azioni migliorative da programmare non richiedenti un intervento immediato"
     classe = "basso"
   }
-  else if (r <= 4) {
+  else if (r <= 6) {
     livello = "MEDIO";
     azioneGenerale = "Azioni correttive e/o migliorative da programmare nel breve, medio termine";
     classe = "medio";
   } 
-  else if (r <= 8) {
+  else if (r <= 9) {
     livello = "GRAVE";
     azioneGenerale = "Azioni correttive necessarie da programmare con urgenza ";
     classe = "grave";
   } 
-  else if (r <= 12) {
+  else if (r <= 16){
     livello = "GRAVISSIMO";
     azioneGenerale = "Azioni correttive indilazionabili";
     classe = "gravissimo";
